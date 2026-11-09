@@ -1,0 +1,211 @@
+{
+  "entities": {
+    "UserProfile": {
+      "title": "UserProfile",
+      "description": "User profile for client, editor, or administrator",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string" },
+        "email": { "type": "string" },
+        "fullName": { "type": "string" },
+        "username": { "type": "string" },
+        "role": { "type": "string", "enum": ["client", "editor", "admin"] },
+        "avatarUrl": { "type": "string" },
+        "coverUrl": { "type": "string" },
+        "bio": { "type": "string" },
+        "headline": { "type": "string" },
+        "specialties": { "type": "array" },
+        "softwareExpertise": { "type": "array" },
+        "experienceLevel": { "type": "string" },
+        "yearsOfExperience": { "type": "number" },
+        "startingPrice": { "type": "number" },
+        "pricingModel": { "type": "string" },
+        "pricingDescription": { "type": "string" },
+        "availability": { "type": "string", "enum": ["available", "busy", "unavailable"] },
+        "deliveryTime": { "type": "string" },
+        "languages": { "type": "array" },
+        "location": { "type": "string" },
+        "rating": { "type": "number" },
+        "reviewCount": { "type": "number" },
+        "verified": { "type": "boolean" },
+        "featured": { "type": "boolean" },
+        "createdAt": { "type": "string" },
+        "updatedAt": { "type": "string" }
+      },
+      "required": ["id", "email", "fullName", "username", "role"]
+    },
+    "PortfolioProject": {
+      "title": "PortfolioProject",
+      "description": "Video editor portfolio project showpiece",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string" },
+        "editorId": { "type": "string" },
+        "title": { "type": "string" },
+        "description": { "type": "string" },
+        "category": { "type": "string" },
+        "videoUrl": { "type": "string" },
+        "thumbnailUrl": { "type": "string" },
+        "softwareUsed": { "type": "array" },
+        "tags": { "type": "array" },
+        "viewsCount": { "type": "number" },
+        "duration": { "type": "string" },
+        "clientName": { "type": "string" },
+        "createdAt": { "type": "string" }
+      },
+      "required": ["id", "editorId", "title", "category", "videoUrl"]
+    },
+    "Conversation": {
+      "title": "Conversation",
+      "description": "One-to-one conversation between a client and an editor",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string" },
+        "participants": { "type": "array" },
+        "lastMessage": { "type": "string" },
+        "lastMessageSenderId": { "type": "string" },
+        "lastMessageAt": { "type": "string" },
+        "unreadCounts": { "type": "object" },
+        "createdAt": { "type": "string" }
+      },
+      "required": ["id", "participants"]
+    },
+    "Message": {
+      "title": "Message",
+      "description": "Individual message in a conversation",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string" },
+        "conversationId": { "type": "string" },
+        "senderId": { "type": "string" },
+        "senderName": { "type": "string" },
+        "senderAvatar": { "type": "string" },
+        "text": { "type": "string" },
+        "attachments": { "type": "array" },
+        "createdAt": { "type": "string" },
+        "read": { "type": "boolean" }
+      },
+      "required": ["id", "conversationId", "senderId", "text"]
+    },
+    "SavedEditor": {
+      "title": "SavedEditor",
+      "description": "Bookmarked editor for client favorites",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string" },
+        "clientId": { "type": "string" },
+        "editorId": { "type": "string" },
+        "createdAt": { "type": "string" }
+      },
+      "required": ["id", "clientId", "editorId"]
+    },
+    "Review": {
+      "title": "Review",
+      "description": "Client review and star rating for an editor",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string" },
+        "editorId": { "type": "string" },
+        "clientId": { "type": "string" },
+        "clientName": { "type": "string" },
+        "clientAvatar": { "type": "string" },
+        "rating": { "type": "number" },
+        "projectTitle": { "type": "string" },
+        "comment": { "type": "string" },
+        "editorReply": { "type": "string" },
+        "createdAt": { "type": "string" }
+      },
+      "required": ["id", "editorId", "clientId", "rating", "comment"]
+    },
+    "Notification": {
+      "title": "Notification",
+      "description": "User notification item",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string" },
+        "userId": { "type": "string" },
+        "type": { "type": "string" },
+        "title": { "type": "string" },
+        "message": { "type": "string" },
+        "linkUrl": { "type": "string" },
+        "read": { "type": "boolean" },
+        "createdAt": { "type": "string" }
+      },
+      "required": ["id", "userId", "title", "message"]
+    },
+    "Enquiry": {
+      "title": "Enquiry",
+      "description": "Direct project enquiry sent to an editor",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string" },
+        "clientId": { "type": "string" },
+        "clientName": { "type": "string" },
+        "clientEmail": { "type": "string" },
+        "editorId": { "type": "string" },
+        "projectTitle": { "type": "string" },
+        "category": { "type": "string" },
+        "estimatedBudget": { "type": "string" },
+        "deadline": { "type": "string" },
+        "details": { "type": "string" },
+        "status": { "type": "string" },
+        "createdAt": { "type": "string" }
+      },
+      "required": ["id", "clientId", "editorId", "projectTitle", "details"]
+    },
+    "Report": {
+      "title": "Report",
+      "description": "User flag / report for moderation",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string" },
+        "reporterId": { "type": "string" },
+        "targetType": { "type": "string" },
+        "targetId": { "type": "string" },
+        "reason": { "type": "string" },
+        "details": { "type": "string" },
+        "status": { "type": "string" },
+        "createdAt": { "type": "string" }
+      },
+      "required": ["id", "reporterId", "targetType", "targetId", "reason"]
+    }
+  },
+  "firestore": {
+    "/users/{userId}": {
+      "schema": "UserProfile",
+      "description": "User profiles for clients and editors"
+    },
+    "/portfolios/{portfolioId}": {
+      "schema": "PortfolioProject",
+      "description": "Video projects in editor portfolios"
+    },
+    "/conversations/{conversationId}": {
+      "schema": "Conversation",
+      "description": "Direct message channels between clients and editors"
+    },
+    "/conversations/{conversationId}/messages/{messageId}": {
+      "schema": "Message",
+      "description": "Chat messages inside a conversation"
+    },
+    "/savedEditors/{savedId}": {
+      "schema": "SavedEditor",
+      "description": "Client saved favorite editors"
+    },
+    "/reviews/{reviewId}": {
+      "schema": "Review",
+      "description": "Client reviews for completed video projects"
+    },
+    "/notifications/{notificationId}": {
+      "schema": "Notification",
+      "description": "User notifications"
+    },
+    "/enquiries/{enquiryId}": {
+      "schema": "Enquiry",
+      "description": "Client enquiries for editors"
+    },
+    "/reports/{reportId}": {
+      "schema": "Report",
+      "description": "Moderation reports for admin review"
+    }
+  }
+}
